@@ -1,0 +1,14 @@
+parameters:
+    database_driver: pdo_pgsql
+    database_host: localhost
+    database_port: null
+    database_name: cheminduson
+    database_user: clamz
+    database_password: 5AKXscc4MXzKKVvC
+    mailer_transport: smtp
+    mailer_host: localhost
+    mailer_user: null
+    mailer_password: null
+    locale: fr
+    secret: 11cf16b31c315f9feca238ba7e5427510
+    database_path: null
