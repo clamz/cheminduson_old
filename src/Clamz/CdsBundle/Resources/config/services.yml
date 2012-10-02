@@ -1,0 +1,7 @@
+parameters:
+#    clamz_cds.example.class: Clamz\CdsBundle\Example
+
+services:
+#    clamz_cds.example:
+#        class: %clamz_cds.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
