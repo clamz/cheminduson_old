@@ -13,7 +13,8 @@
     <body>
     	<header>
     		<nav>
-    			<!-- render menu -->
+    			{% set menuItem = knp_menu_get('main', [], {'some_option': 'my_value'}) %}
+    			{{ knp_menu_render(menuItem) }}
     		</nav>
     	</header>
     	<div id="content">

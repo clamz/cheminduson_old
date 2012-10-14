@@ -1,5 +1,5 @@
 {
-    "hash": "4ce76319586133e52c4f74f19cfd4ed8",
+    "hash": "d6a44105873ebd7b76368b985294b2c1",
     "packages": [
         {
             "name": "doctrine/common",
@@ -357,7 +357,7 @@
                 "symfony/framework-bundle": "2.*",
                 "jms/cg": "1.0.0"
             },
-            "time": "2012-01-02 18:50:26",
+            "time": "2012-01-02 17:50:26",
             "type": "symfony-bundle",
             "installation-source": "dist",
             "autoload": {
@@ -399,7 +399,7 @@
             "require": {
                 "php": ">=5.3.0"
             },
-            "time": "2012-01-02 18:40:52",
+            "time": "2012-01-02 17:40:52",
             "type": "library",
             "installation-source": "dist",
             "autoload": {
@@ -501,7 +501,7 @@
             "require": {
                 "php": ">=5.3.0"
             },
-            "time": "2012-01-02 19:32:49",
+            "time": "2012-01-02 18:32:49",
             "type": "library",
             "installation-source": "dist",
             "autoload": {
@@ -592,6 +592,119 @@
                 "expression"
             ],
             "time": "1346947943"
+        },
+        {
+            "name": "knplabs/knp-menu",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "http://github.com/KnpLabs/KnpMenu.git",
+                "reference": "b750b0346cec3cb77e49ed75c6e272bc9636a47b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/KnpLabs/KnpMenu/zipball/b750b0346cec3cb77e49ed75c6e272bc9636a47b",
+                "reference": "b750b0346cec3cb77e49ed75c6e272bc9636a47b",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "silex/silex": "1.0.*",
+                "twig/twig": ">=1.2,<2.0-dev",
+                "pimple/pimple": "1.0.*"
+            },
+            "suggest": {
+                "pimple/pimple": "for the built-in implementations of the menu provider and renderer provider",
+                "silex/silex": "for the integration with your silex application",
+                "twig/twig": "for the TwigRenderer and the integration with your templates"
+            },
+            "time": "1348823561",
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.0.x-dev"
+                }
+            },
+            "installation-source": "source",
+            "autoload": {
+                "psr-0": {
+                    "Knp\\Menu\\": "src/"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Christophe Coevoet",
+                    "email": "stof@notk.org"
+                },
+                {
+                    "name": "Knplabs",
+                    "homepage": "http://knplabs.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://github.com/KnpLabs/KnpMenu/contributors"
+                }
+            ],
+            "description": "An object oriented menu library",
+            "homepage": "http://knplabs.com",
+            "keywords": [
+                "menu",
+                "tree"
+            ]
+        },
+        {
+            "name": "knplabs/knp-menu-bundle",
+            "version": "dev-master",
+            "target-dir": "Knp/Bundle/MenuBundle",
+            "source": {
+                "type": "git",
+                "url": "http://github.com/KnpLabs/KnpMenuBundle.git",
+                "reference": "3a02006670551b40a0f22690544854246bd7fd48"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/KnpLabs/KnpMenuBundle/zipball/3a02006670551b40a0f22690544854246bd7fd48",
+                "reference": "3a02006670551b40a0f22690544854246bd7fd48",
+                "shasum": ""
+            },
+            "require": {
+                "symfony/framework-bundle": ">=2.0,<2.2-dev",
+                "knplabs/knp-menu": "2.0.*"
+            },
+            "time": "1350001670",
+            "type": "symfony-bundle",
+            "installation-source": "source",
+            "autoload": {
+                "psr-0": {
+                    "Knp\\Bundle\\MenuBundle": ""
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Christophe Coevoet",
+                    "email": "stof@notk.org"
+                },
+                {
+                    "name": "Knplabs",
+                    "homepage": "http://knplabs.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://github.com/KnpLabs/KnpMenuBundle/contributors"
+                }
+            ],
+            "description": "This bundle provides an integration of the KnpMenu library",
+            "keywords": [
+                "menu"
+            ]
         },
         {
             "name": "kriswallsmith/assetic",
@@ -1273,7 +1386,7 @@
 
     ],
     "minimum-stability": "dev",
-    "stability-flags": [
-
-    ]
+    "stability-flags": {
+        "knplabs/knp-menu-bundle": 20
+    }
 }
