@@ -1,0 +1,28 @@
+
+
+header {
+	height: 68px;
+	background: url(../images/header.jpg) repeat-x;
+	display:table;
+	width:100%;
+}
+
+header a{
+    color:white;
+}
+
+    header div#logo{
+	   display: table-cell;
+	   vertical-align: middle;
+	   width: 235px;	   
+    }
+    
+	header nav{
+		margin:5px;
+		display:table-cell;
+		vertical-align: middle;
+	}
+div#content {
+	background: url(../images/fond.jpg) repeat-x;
+	min-height: 300px;
+}

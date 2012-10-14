@@ -1,0 +1,14 @@
+header nav li{
+	display:inline;
+}
+
+div.connexion-block{
+	position:absolute;
+    left:auto;
+    top:auto;
+	border:black;
+	background:#EFEFEF;
+	overflow:hidden;
+	display:none;
+}
+
