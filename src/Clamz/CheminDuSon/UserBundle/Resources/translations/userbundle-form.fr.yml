@@ -1,0 +1,6 @@
+form:
+  coordonnees:
+    zipcode:
+      label: Code postal
+    isprivate:
+      label: Adresse privée

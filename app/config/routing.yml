@@ -1,6 +1,15 @@
-clamz_cds:
-    resource: "@ClamzCdsBundle/Resources/config/routing.yml"
+_welcome:
+    pattern:  /
+    defaults: { _controller: ClamzCdsSiteBundle:Accueil:accueil }
+
+clamz_cds_site:
+    resource: "@ClamzCdsSiteBundle/Resources/config/routing.yml"
     prefix:   /
+
+clamz_chemin_du_son_user:
+    resource: "@ClamzCheminDuSonUserBundle/Controller"
+    type: annotation
+    prefix:   /user/
 
 # Internal routing configuration to handle ESI
 #_internal:

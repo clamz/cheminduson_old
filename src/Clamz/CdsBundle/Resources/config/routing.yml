@@ -1,3 +1,0 @@
-clamz_cds_homepage:
-    pattern:  /hello/{name}
-    defaults: { _controller: ClamzCdsBundle:Default:index }

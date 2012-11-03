@@ -1,0 +1,3 @@
+clamz_chemin_du_son_user_preference:
+    pattern:  /edit-preferences/{id}
+    defaults: { _controller: ClamzCheminDuSonUserBundle:Registration:editPreferences }

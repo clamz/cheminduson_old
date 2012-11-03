@@ -1,0 +1,6 @@
+parameters:
+  coordonnees_type.class: Clamz\CheminDuSon\SiteBundle\Form\CoordonneesType
+services:
+  coordonnees_type:
+    class: "%coordonnees_type.class%"
+  

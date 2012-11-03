@@ -1,0 +1,6 @@
+clamz_cds_site_homepage:
+    pattern:  /accueil
+    defaults: { _controller: ClamzCdsSiteBundle:Accueil:accueil }
+clamz_cds_site_test:
+    pattern:  /test
+    defaults: { _controller: ClamzCdsSiteBundle:Accueil:test,_format: json }

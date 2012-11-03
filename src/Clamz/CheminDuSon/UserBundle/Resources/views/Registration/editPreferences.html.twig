@@ -1,0 +1,20 @@
+{% extends "FOSUserBundle::layout.html.twig" %}
+
+{% block fos_user_content %}
+	{% include 'ClamzCheminDuSonUserBundle:Registration/include:registration_breadcrumb.inc.html.twig' with {'page': 'edit-preference'} %}
+	<form  method="post" {{ form_enctype(form) }}>
+	    
+		{% for itemForm in form %}
+			<div class="field">
+				{{ form_label(itemForm) }}	{%  if itemForm.vars.required %}*{% endif %}
+				{%  if itemForm.vars.name=='userId' %}
+    				{{ form_widget(itemForm,{'attr':{ 'value': userId }}) }}
+				{% else %}
+					{{ form_widget(itemForm) }}
+    			{%  endif %}
+    			{{ form_errors(itemForm) }}
+			</div>
+		{% endfor %}
+	    <input type="submit" />
+	</form>
+{%  endblock fos_user_content %}

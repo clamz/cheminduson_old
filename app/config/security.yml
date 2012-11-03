@@ -24,19 +24,12 @@ security:
         dev:
             pattern:  ^/(_(profiler|wdt)|css|images|js)/
             security: false
-
-        login:
-            pattern:  ^/demo/secured/login$
-            security: false
-
-        secured_area:
-            pattern:    ^/demo/secured/
+        accueil:
+            pattern: ^/accueil
             form_login:
-                check_path: /demo/secured/login_check
-                login_path: /demo/secured/login
-            logout:
-                path:   /demo/secured/logout
-                target: /demo/
+                provider: fos_userbundle
+                csrf_provider: form.csrf_provider
+            anonymous: false
         main:
             pattern: ^/
             form_login:

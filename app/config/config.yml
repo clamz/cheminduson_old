@@ -1,11 +1,12 @@
 imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
+    - { resource: @ClamzCdsSiteBundle/Resources/config/formsServices.yml }
 
 framework:
     #esi:             ~
-    #translator:      { fallback: %locale% }
-    translator: ~
+    translator:      { fallback: %locale% }
+    #translator: ~
     secret:          %secret%
     router:
         resource: "%kernel.root_dir%/config/routing.yml"
@@ -27,7 +28,7 @@ twig:
 assetic:
     debug:          %kernel.debug%
     use_controller: false
-    bundles:        [ClamzCdsBundle]
+    bundles:        [ClamzCdsSiteBundle,ClamzCheminDuSonUserBundle]
     #java: /usr/bin/java
     filters:
         cssrewrite: ~
@@ -62,7 +63,18 @@ swiftmailer:
 fos_user:
     db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
     firewall_name: main
-    user_class: Clamz\CdsBundle\Entity\User
+    user_class: Clamz\CheminDuSon\UserBundle\Entity\User
+    service:
+        mailer: fos_user.mailer.twig_swift
+    registration:
+      confirmation:
+        from_email:
+          address:        noreply@cheminduson.fr
+          sender_name:    Chemin du son
+        enabled: true
+    from_email:
+        address:        noreply@cheminduson.fr
+        sender_name:    Chemin du son
     
  # app/config/config.yml
 knp_menu:
