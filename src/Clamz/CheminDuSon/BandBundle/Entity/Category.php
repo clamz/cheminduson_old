@@ -30,13 +30,13 @@ class Category
 
 	/**
 	 * @var array bands
-	 * @ORM\OneToMany(targetEntity="Clamz\cheminDuSon\BandBundle\Entity\Band", mappedBy="category")
+	 * @ORM\OneToMany(targetEntity="Band", mappedBy="category")
 	 */
     private $bands;
     
     /**
      * @var int $parentCategory
-     * @ORM\ManyToOne(targetEntity="Clamz\cheminDuSon\BandBundle\Entity\Category")
+     * @ORM\ManyToOne(targetEntity="Category")
      * 
      */
     private $parentCategory;

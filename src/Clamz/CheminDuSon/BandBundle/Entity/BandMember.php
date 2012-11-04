@@ -16,14 +16,14 @@ class BandMember
     /**
      * @var integer $band
      * @ORM\Id
-     * @ORM\ManyToOne(targetEntity="Clamz\CheminDuSon\BandBundle\Entity\Band")
+     * @ORM\ManyToOne(targetEntity="Band")
      */
     private $band;
     
     /**
      * @var integer $band
      * @ORM\Id
-     * @ORM\ManyToOne(targetEntity="Clamz\CheminDuSon\BandBundle\Entity\Member")
+     * @ORM\ManyToOne(targetEntity="Member")
      */
     private $member;
 

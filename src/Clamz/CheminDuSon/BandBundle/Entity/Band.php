@@ -51,14 +51,13 @@ class Band
     
     /**
      * @var int $category
-     * @ORM\ManyToOne(targetEntity="Clamz\cheminDuSon\BandBundle\Entity\Category", inversedBy="bands")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\ManyToOne(targetEntity="Category", inversedBy="bands")
      */
     private $category;
 
     /**
      * var int $tags
-     * @ORM\ManyToMany(targetEntity="Clamz\cheminDuSon\BandBundle\Entity\Tag")
+     * @ORM\ManyToMany(targetEntity="Tag")
      * @ORM\JoinTable(name="cds_band_tag_rel")
      */
     private $tags;
@@ -175,13 +174,15 @@ class Band
         return $this->presentation;
     }
 
+   
+
     /**
      * Set category
      *
-     * @param Clamz\cheminDuSon\BandBundle\Entity\Category $category
+     * @param Clamz\CheminDuSon\BandBundle\Entity\Category $category
      * @return Band
      */
-    public function setCategory(\Clamz\cheminDuSon\BandBundle\Entity\Category $category = null)
+    public function setCategory(\Clamz\CheminDuSon\BandBundle\Entity\Category $category = null)
     {
         $this->category = $category;
     
@@ -191,21 +192,20 @@ class Band
     /**
      * Get category
      *
-     * @return Clamz\cheminDuSon\BandBundle\Entity\Category 
+     * @return Clamz\CheminDuSon\BandBundle\Entity\Category 
      */
     public function getCategory()
     {
         return $this->category;
     }
-    
-    
+
     /**
      * Add tags
      *
-     * @param Clamz\cheminDuSon\BandBundle\Entity\Tag $tags
+     * @param Clamz\CheminDuSon\BandBundle\Entity\Tag $tags
      * @return Band
      */
-    public function addTag(\Clamz\cheminDuSon\BandBundle\Entity\Tag $tags)
+    public function addTag(\Clamz\CheminDuSon\BandBundle\Entity\Tag $tags)
     {
         $this->tags[] = $tags;
     
@@ -215,9 +215,9 @@ class Band
     /**
      * Remove tags
      *
-     * @param Clamz\cheminDuSon\BandBundle\Entity\Tag $tags
+     * @param Clamz\CheminDuSon\BandBundle\Entity\Tag $tags
      */
-    public function removeTag(\Clamz\cheminDuSon\BandBundle\Entity\Tag $tags)
+    public function removeTag(\Clamz\CheminDuSon\BandBundle\Entity\Tag $tags)
     {
         $this->tags->removeElement($tags);
     }
