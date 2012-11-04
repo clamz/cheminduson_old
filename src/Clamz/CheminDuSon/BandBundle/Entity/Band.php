@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Clamz\CheminDuSon\BandBundle\Entity\Band
  *
- * @ORM\Table()
+ * @ORM\Table(name="cds_band")
  * @ORM\Entity(repositoryClass="Clamz\CheminDuSon\BandBundle\Entity\BandRepository")
  */
 class Band
@@ -48,8 +48,31 @@ class Band
      * @ORM\Column(name="presentation", type="text")
      */
     private $presentation;
+    
+    /**
+     * @var int $category
+     * @ORM\ManyToOne(targetEntity="Clamz\cheminDuSon\BandBundle\Entity\Category", inversedBy="bands")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $category;
 
-
+    /**
+     * var int $tags
+     * @ORM\ManyToMany(targetEntity="Clamz\cheminDuSon\BandBundle\Entity\Tag")
+     * @ORM\JoinTable(name="cds_band_tag_rel")
+     */
+    private $tags;
+    
+    
+    
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+    	$this->tags = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
     /**
      * Get id
      *
@@ -150,5 +173,62 @@ class Band
     public function getPresentation()
     {
         return $this->presentation;
+    }
+
+    /**
+     * Set category
+     *
+     * @param Clamz\cheminDuSon\BandBundle\Entity\Category $category
+     * @return Band
+     */
+    public function setCategory(\Clamz\cheminDuSon\BandBundle\Entity\Category $category = null)
+    {
+        $this->category = $category;
+    
+        return $this;
+    }
+
+    /**
+     * Get category
+     *
+     * @return Clamz\cheminDuSon\BandBundle\Entity\Category 
+     */
+    public function getCategory()
+    {
+        return $this->category;
+    }
+    
+    
+    /**
+     * Add tags
+     *
+     * @param Clamz\cheminDuSon\BandBundle\Entity\Tag $tags
+     * @return Band
+     */
+    public function addTag(\Clamz\cheminDuSon\BandBundle\Entity\Tag $tags)
+    {
+        $this->tags[] = $tags;
+    
+        return $this;
+    }
+
+    /**
+     * Remove tags
+     *
+     * @param Clamz\cheminDuSon\BandBundle\Entity\Tag $tags
+     */
+    public function removeTag(\Clamz\cheminDuSon\BandBundle\Entity\Tag $tags)
+    {
+        $this->tags->removeElement($tags);
+    }
+
+    /**
+     * Get tags
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getTags()
+    {
+        return $this->tags;
     }
 }
