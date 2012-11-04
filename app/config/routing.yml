@@ -3,11 +3,6 @@ cds_band:
     type:     annotation
     prefix:   /
 
-cds_group:
-    resource: "@CdsGroupBundle/Controller/"
-    type:     annotation
-    prefix:   /
-
 _welcome:
     pattern:  /
     defaults: { _controller: ClamzCdsSiteBundle:Accueil:accueil }
