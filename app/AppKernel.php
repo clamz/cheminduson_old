@@ -23,6 +23,7 @@ class AppKernel extends Kernel
         	new Knp\Bundle\MenuBundle\KnpMenuBundle(),
             new Clamz\CheminDuSon\UserBundle\ClamzCheminDuSonUserBundle(),
             new Clamz\CheminDuSon\SiteBundle\ClamzCdsSiteBundle(),
+            new Clamz\CheminDuSon\BandBundle\CdsBandBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
