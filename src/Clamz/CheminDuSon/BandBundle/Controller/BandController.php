@@ -2,11 +2,16 @@
 
 namespace Clamz\CheminDuSon\BandBundle\Controller;
 
+use Clamz\CheminDuSon\BandBundle\Entity\Tag;
+
+use Monolog\Logger;
+
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use JMS\SecurityExtraBundle\Annotation\Secure;
 use Clamz\CheminDuSon\BandBundle\Entity\Band;
 use Clamz\CheminDuSon\BandBundle\Form\BandType;
 
@@ -23,177 +28,91 @@ class BandController extends Controller
      * @Route("/", name="band")
      * @Template()
      */
-    public function indexAction()
+    public function listBandsAction()
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('CdsBandBundle:Band')->findAll();
+        $bands = $em->getRepository('CdsBandBundle:Band')->findAll();
 
         return array(
-            'entities' => $entities,
+            'bands' => $bands,
         );
     }
-
+    
     /**
-     * Finds and displays a Band entity.
+     * Lists all Band entities.
+     *
+     * @Route("/new", name="band_new")
+     * @Secure(roles="ROLE_USER")
+     * @Template()
+     */
+    public function newBandAction()
+    {
+    	$band = new Band();
+    	$tag = new Tag();
+    	$tag->setName("test");
+    	$tag2 = new Tag();
+    	$tag2->setName("hey");
+    	$band->addTag($tag);
+    	$band->addTag($tag2);
+    	$form=$this->getBandForm($band)->createView();
+    	return array('form' => $form);
+    }
+    
+    /**
+     * Displays a form to create a new Band entity without layout. <br />
+     * This method is useful to display the form in dialog box
+     *
+     * @Route("/newForm", name="band_new_form",options={"expose" = true})
+     * @Secure(roles="ROLE_USER")
+     * @Template("CdsBandBundle:Band/include:form-new-band.inc.html.twig")
+     */
+    public function newBandFormAction(){
+    	$band = new Band();
+    	return array('form' => $this->getBandForm($band)->createView());
+    }
+    
+    /**
+     * @Route("/create", name="band_create")
+     * @Method("POST")
+     * @Secure(roles="ROLE_USER")
+     * @Template("CdsBandBundle:Band/include:form-new-band.inc.html.twig")
+     */
+    public function createBandAction(Request $request){
+    	$band = new Band();
+    	$form =  $this->getBandForm($band);
+    	$form->bind($request);
+    	$data = $form->getData();
+    	
+    	$repoBand = $this->getDoctrine()->getManager()->getRepository('CdsBandBundle:Band');
+    	
+    	$tags = $request->get("tags");
+    	
+    	$repoBand->createBand($band, $tags);
+    	
+    	return $this->redirect($this->generateUrl('band_new'));
+    }
+    
+    /**
+     * Lists all Band entities.
      *
      * @Route("/{id}/show", name="band_show")
      * @Template()
      */
-    public function showAction($id)
-    {
-        $em = $this->getDoctrine()->getManager();
-
-        $entity = $em->getRepository('CdsBandBundle:Band')->find($id);
-
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Band entity.');
-        }
-
-        $deleteForm = $this->createDeleteForm($id);
-
-        return array(
-            'entity'      => $entity,
-            'delete_form' => $deleteForm->createView(),
-        );
+    public function showBandAction(Band $band)
+    {    	
+    	return array('band'=>$band);
     }
-
+    
     /**
-     * Displays a form to create a new Band entity.
+     * Return the band form
      *
-     * @Route("/new", name="band_new")
-     * @Template()
+     * @return Form
      */
-    public function newAction()
-    {
-        $entity = new Band();
-        $form   = $this->createForm(new BandType(), $entity);
-
-        return array(
-            'entity' => $entity,
-            'form'   => $form->createView(),
-        );
-    }
-
-    /**
-     * Creates a new Band entity.
-     *
-     * @Route("/create", name="band_create")
-     * @Method("POST")
-     * @Template("CdsBandBundle:Band:new.html.twig")
-     */
-    public function createAction(Request $request)
-    {
-        $entity  = new Band();
-        $form = $this->createForm(new BandType(), $entity);
-        $form->bind($request);
-
-        if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($entity);
-            $em->flush();
-
-            return $this->redirect($this->generateUrl('band_show', array('id' => $entity->getId())));
-        }
-
-        return array(
-            'entity' => $entity,
-            'form'   => $form->createView(),
-        );
-    }
-
-    /**
-     * Displays a form to edit an existing Band entity.
-     *
-     * @Route("/{id}/edit", name="band_edit")
-     * @Template()
-     */
-    public function editAction($id)
-    {
-        $em = $this->getDoctrine()->getManager();
-
-        $entity = $em->getRepository('CdsBandBundle:Band')->find($id);
-
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Band entity.');
-        }
-
-        $editForm = $this->createForm(new BandType(), $entity);
-        $deleteForm = $this->createDeleteForm($id);
-
-        return array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
-        );
-    }
-
-    /**
-     * Edits an existing Band entity.
-     *
-     * @Route("/{id}/update", name="band_update")
-     * @Method("POST")
-     * @Template("CdsBandBundle:Band:edit.html.twig")
-     */
-    public function updateAction(Request $request, $id)
-    {
-        $em = $this->getDoctrine()->getManager();
-
-        $entity = $em->getRepository('CdsBandBundle:Band')->find($id);
-
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Band entity.');
-        }
-
-        $deleteForm = $this->createDeleteForm($id);
-        $editForm = $this->createForm(new BandType(), $entity);
-        $editForm->bind($request);
-
-        if ($editForm->isValid()) {
-            $em->persist($entity);
-            $em->flush();
-
-            return $this->redirect($this->generateUrl('band_edit', array('id' => $id)));
-        }
-
-        return array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
-        );
-    }
-
-    /**
-     * Deletes a Band entity.
-     *
-     * @Route("/{id}/delete", name="band_delete")
-     * @Method("POST")
-     */
-    public function deleteAction(Request $request, $id)
-    {
-        $form = $this->createDeleteForm($id);
-        $form->bind($request);
-
-        if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('CdsBandBundle:Band')->find($id);
-
-            if (!$entity) {
-                throw $this->createNotFoundException('Unable to find Band entity.');
-            }
-
-            $em->remove($entity);
-            $em->flush();
-        }
-
-        return $this->redirect($this->generateUrl('band'));
-    }
-
-    private function createDeleteForm($id)
-    {
-        return $this->createFormBuilder(array('id' => $id))
-            ->add('id', 'hidden')
-            ->getForm()
-        ;
+    private function getBandForm($band){
+    	
+    	$form = $this->createForm(new BandType(),$band);
+    	
+    	return $form;
     }
 }

@@ -2,12 +2,17 @@
 
 namespace Clamz\CheminDuSon\BandBundle\Entity;
 
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Clamz\CheminDuSon\BandBundle\Entity\Band
  *
  * @ORM\Table(name="cds_band")
+ * @ORM\HasLifecycleCallbacks
  * @ORM\Entity(repositoryClass="Clamz\CheminDuSon\BandBundle\Entity\BandRepository")
  */
 class Band
@@ -36,9 +41,15 @@ class Band
     private $nationality;
 
     /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    public $path;
+    
+    /**
      * @var string $image
      *
-     * @ORM\Column(name="image", type="string", length=255)
+     * @ORM\Column(name="image", type="string", length=255, nullable=true)
+     * @Assert\Image(maxSize = "6024k")
      */
     private $image;
 
@@ -57,7 +68,7 @@ class Band
 
     /**
      * var int $tags
-     * @ORM\ManyToMany(targetEntity="Tag")
+     * @ORM\ManyToMany(targetEntity="Tag", cascade={"persist"})
      * @ORM\JoinTable(name="cds_band_tag_rel")
      */
     private $tags;
@@ -69,9 +80,11 @@ class Band
      */
     public function __construct()
     {
-    	$this->tags = new \Doctrine\Common\Collections\ArrayCollection();
+    	$this->tags = new ArrayCollection();
     }
     
+    
+
     /**
      * Get id
      *
@@ -90,8 +103,7 @@ class Band
      */
     public function setName($name)
     {
-        $this->name = $name;
-    
+        $this->name = $name;    
         return $this;
     }
 
@@ -113,8 +125,7 @@ class Band
      */
     public function setNationality($nationality)
     {
-        $this->nationality = $nationality;
-    
+        $this->nationality = $nationality;    
         return $this;
     }
 
@@ -134,10 +145,9 @@ class Band
      * @param string $image
      * @return Band
      */
-    public function setImage($image)
+    public function setImage(File $image = null)
     {
-        $this->image = $image;
-    
+        $this->image = $image;    
         return $this;
     }
 
@@ -159,8 +169,7 @@ class Band
      */
     public function setPresentation($presentation)
     {
-        $this->presentation = $presentation;
-    
+        $this->presentation = $presentation;    
         return $this;
     }
 
@@ -174,8 +183,6 @@ class Band
         return $this->presentation;
     }
 
-   
-
     /**
      * Set category
      *
@@ -185,7 +192,6 @@ class Band
     public function setCategory(\Clamz\CheminDuSon\BandBundle\Entity\Category $category = null)
     {
         $this->category = $category;
-    
         return $this;
     }
 
@@ -230,5 +236,88 @@ class Band
     public function getTags()
     {
         return $this->tags;
+    }
+    
+    /**
+     * Get tags
+     *
+     * @return Doctrine\Common\Collections\Collection
+     */
+    public function setTags(ArrayCollection $tags)
+    {
+    	foreach($tags as $tag){
+    		$tag->addBand($this);
+    	}
+    	$this->tags = $tags;
+    }
+    
+    /**
+     * @ORM\PrePersist()
+     * @ORM\PreUpdate()
+     */
+    public function preUpload()
+    {
+    	if (null !== $this->image) {
+    		// do whatever you want to generate a unique name
+    		$this->setPath($this->image->getClientOriginalName());
+    	}
+    }
+    
+    /**
+     * @ORM\PostPersist()
+     * @ORM\PostUpdate()
+     */
+    public function upload()
+    {
+    	if (null === $this->image) {
+    		return;
+    	}
+    
+    	// if there is an error when moving the file, an exception will
+    	// be automatically thrown by move(). This will properly prevent
+    	// the entity from being persisted to the database on error
+    	$this->image->move($this->getUploadRootDir(), $this->path);
+    
+    	unset($this->image);
+    }
+    
+    protected function getUploadRootDir()
+    {
+    	// the absolute directory path where uploaded documents should be saved
+    	return __DIR__.'/../../../../../web/'.$this->getUploadDir();
+    }
+    
+    public function getWebPath()
+    {
+    	return null === $this->path ? null : $this->getUploadDir().'/'.$this->path;
+    }
+    
+    protected function getUploadDir()
+    {
+    	// get rid of the __DIR__ so it doesn't screw when displaying uploaded doc/image in the view.
+    	return 'uploads/band/images';
+    }
+
+    /**
+     * Set path
+     *
+     * @param string $path
+     * @return Band
+     */
+    public function setPath($path)
+    {
+        $this->path = $path;
+    
+        return $this;
+    }
+
+    /**
+     * Get path
+     *
+     * @return string 
+     */
+    public function getPath()
+    {
+        return $this->path;
     }
 }

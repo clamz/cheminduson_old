@@ -10,3 +10,6 @@ composer.phar
 .settings
 LICENSE
 UPGRADE.md
+*.php~
+install/
+web/uploads

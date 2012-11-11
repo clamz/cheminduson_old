@@ -1,0 +1,16 @@
+.tbl-display-value {
+    padding: 3px;
+    background: #4475A0;
+    margin:3px;
+    border-radius:6px;
+}
+
+a.tbl-display-delete{
+    margin: 3px;
+    color:#36628B;
+    text-decoration:none;
+}
+
+div#tbl-container{
+   margin:20px;
+}

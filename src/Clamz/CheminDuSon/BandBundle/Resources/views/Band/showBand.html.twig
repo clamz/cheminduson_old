@@ -13,34 +13,32 @@
             <th>Actions</th>
         </tr>
     </thead>
-    <tbody>
-    {% for entity in entities %}
+    <tbody>   
         <tr>
-            <td><a href="{{ path('band_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
-            <td>{{ entity.name }}</td>
-            <td>{{ entity.nationality }}</td>
-            <td>{{ entity.image }}</td>
-            <td>{{ entity.presentation }}</td>
+            <td><a href="{{ path('band_show', { 'id': band.id }) }}">{{ band.id }}</a></td>
+            <td>{{ band.name }}</td>
+            <td>{{ band.nationality }}</td>
+            <td><img src="{{ asset(band.webPath) }}" /></td>
+            <td>{{ band.presentation }}</td>
             <td>
                 <ul>
                     <li>
-                        <a href="{{ path('band_show', { 'id': entity.id }) }}">show</a>
+                        <a href="{{ path('band_show', { 'id': band.id }) }}">show</a>
                     </li>
                     <li>
-                        <a href="{{ path('band_edit', { 'id': entity.id }) }}">edit</a>
+                        
                     </li>
                 </ul>
             </td>
         </tr>
-    {% endfor %}
     </tbody>
 </table>
 
 <ul>
     <li>
-        <a href="{{ path('band_new') }}">
+        <span  id="new-band">
             Create a new entry
-        </a>
+        </span>
     </li>
 </ul>
 {% endblock %}

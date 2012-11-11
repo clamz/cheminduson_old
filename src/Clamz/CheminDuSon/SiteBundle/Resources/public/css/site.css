@@ -3,11 +3,6 @@
     padding:0;
 }
 
-form label {
-    float:left;
-    width:200px;
-}
-
 header {
 	height: 58px;
 	background: url(../images/header.jpg) repeat-x;
@@ -61,6 +56,6 @@ div#content {
             color: #D3DCD7;
         }
 
-:invalid {
-	background-color:red;
+.hidden{
+	display: none;
 }

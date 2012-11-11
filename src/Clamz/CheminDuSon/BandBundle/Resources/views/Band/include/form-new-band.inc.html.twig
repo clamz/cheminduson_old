@@ -1,0 +1,40 @@
+<h1>Création d'un groupe</h1>
+
+<form action="{{ path('band_create') }}" method="post" {{ form_enctype(form) }}>
+	<div>
+		{{ form_label(form.name) }}
+    	{{ form_widget(form.name) }}
+    	{{ form_errors(form.name) }}
+    </div>
+    <div>
+		{{ form_label(form.nationality) }}
+    	{{ form_widget(form.nationality) }}
+    	{{ form_errors(form.nationality) }}
+    </div>
+    <div>
+		{{ form_label(form.image) }}
+    	{{ form_widget(form.image) }}
+    	{{ form_errors(form.image) }}
+    </div>
+    <div>
+		{{ form_label(form.presentation) }}
+    	{{ form_widget(form.presentation) }}
+    	{{ form_errors(form.presentation) }}
+    </div>
+    <div data-prototype="{{ form_widget(form.tags.vars.prototype)|e }}">
+    	{{ form_label(form.tags) }}
+	    	<input id="band_tags" type="text" name="tags[]" />
+	    	{% set values = "" %}
+    	{% for tag in form.tags %}
+	    	{%  if values !="" %}
+	    		{% set values = values ~ ',' ~ tag.name.vars.value %}
+	    	{%  else %}
+	    		{% set values = tag.name.vars.value %}
+	        {% endif %}
+    	{% endfor %}
+    	<span class="hidden" id="tags-values">{{ values }}</span>
+    </div>
+    <p>
+        <button type="submit">Create</button>
+    </p>
+</form>

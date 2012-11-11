@@ -1,0 +1,8 @@
+form:
+  band:
+    nationality:
+      label: Nationalité
+    name:
+      label: Nom
+    presentation: 
+      label: Présentation

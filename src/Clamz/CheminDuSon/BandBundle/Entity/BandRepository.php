@@ -12,4 +12,22 @@ use Doctrine\ORM\EntityRepository;
  */
 class BandRepository extends EntityRepository
 {
+	function createBand($band, $tags){
+		var_dump($band);
+		$em = $this->getEntityManager();
+		foreach ($tags as $tag){
+			if($tag!==""){
+				$tagEntity = $em->getRepository('CdsBandBundle:Tag')->findOneByName($tag);
+				if($tagEntity===null){
+					$tagEntity = new Tag();
+				}
+				$tagEntity->setName($tag);
+				$band->addTag($tagEntity);
+			}
+		
+		}
+		
+		$em->persist($band);
+		$em->flush();
+	}
 }

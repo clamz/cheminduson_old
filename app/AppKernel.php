@@ -24,6 +24,7 @@ class AppKernel extends Kernel
             new Clamz\CheminDuSon\UserBundle\ClamzCheminDuSonUserBundle(),
             new Clamz\CheminDuSon\SiteBundle\ClamzCdsSiteBundle(),
             new Clamz\CheminDuSon\BandBundle\CdsBandBundle(),
+        	new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

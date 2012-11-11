@@ -1,0 +1,12 @@
+{% extends "CdsBandBundle::layout.html.twig" %}
+{% block body %}
+	{%  include "CdsBandBundle:Band/include:form-new-band.inc.html.twig" %}
+	
+	<ul class="record_actions">
+	    <li>
+	        <a href="{{ path('band') }}">
+	            Back to the list
+	        </a>
+	    </li>
+	</ul>
+{% endblock %}

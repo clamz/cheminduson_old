@@ -5,6 +5,17 @@ input[type=text],input[type=password],input[type=email]{
     height: 25px;
 }
 
+input[type="text"]:invalid, input[type="password"]:invalid, input[type="email"]:invalid {
+    border: 1px solid red;
+}
+
 form div{
 	margin:5px 0;
+}
+
+form label {
+    float:left;
+    width:190px;
+    text-align: right;
+    padding:0 10px 0 0;
 }
