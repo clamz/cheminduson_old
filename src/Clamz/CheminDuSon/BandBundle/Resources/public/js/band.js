@@ -18,8 +18,13 @@ $(function(){
 //	});
 //	
 //	
+waitForKeyElements ("#band-accueil #tabs",
+		function(node){
+			node.tabs({});
+		}
+);
 	
-	var values = $('#tags-values').text().split(',');
-	$('#band_tags').textBoxlist({values: values});
+//	var values = $('#tags-values').text().split(',');
+//	$('#band_tags').textBoxlist({values: values});
 });
 

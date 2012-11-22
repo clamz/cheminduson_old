@@ -2,10 +2,11 @@
 <html>
     <head>
         <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
+        <title>Chemin Du Son - {% block title %}{% endblock %}</title>
         {% block stylesheets %}
         	{% stylesheets 'bundles/clamzcdssite/css/*'
         					'bundles/clamzchemindusonuser/css/*' 
+        					'bundles/cdsband/css/*'
         					filter="cssrewrite" output="css/main.css" %}
 			    <link rel="stylesheet" href="{{ asset_url }}" />
 			{% endstylesheets %}
@@ -20,9 +21,15 @@
     </head>
     <body>
     	<header>
+    		<div id="cds-logo">
+    			<a  href="/" title="{{  'return.to.accueil' | trans }}"><img src="{{ asset("images/logo.png") }}" alt="chemin du son logo" /></a>
+    		</div>
     		<nav>
     			{{ knp_menu_render('main') }}
-    		</nav>    		
+    		</nav>
+    		<div id="cds-quick-search">
+    			<input type="search" placeholder="Recherche..." />
+    		</div>		
     	</header>
     	<div id="content">
         	{% block body %}

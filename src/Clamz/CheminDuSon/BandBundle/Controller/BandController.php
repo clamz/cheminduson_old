@@ -28,15 +28,15 @@ class BandController extends Controller
      * @Route("/", name="band")
      * @Template()
      */
-    public function listBandsAction()
+    public function accueilAction()
     {
         $em = $this->getDoctrine()->getManager();
 
         $bands = $em->getRepository('CdsBandBundle:Band')->findAll();
-
-        return array(
-            'bands' => $bands,
-        );
+        $template = ($this->container->get('request')->isXmlHttpRequest())?"accueil_content":"accueil";
+        return $this->render('CdsBandBundle:Band:'.$template.'.html.twig', array(
+            'bands' => $bands
+        ));
     }
     
     /**

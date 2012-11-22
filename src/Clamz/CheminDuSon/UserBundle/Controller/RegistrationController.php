@@ -47,9 +47,9 @@ class RegistrationController extends BaseController {
 		
 			return new RedirectResponse($url);
 		}
-		
-		return $this->container->get('templating')->renderResponse('FOSUserBundle:Registration:register.html.'.$this->getEngine(), array(
-				'form' => $form->createView(),
+		$template = ($this->container->get('request')->isXmlHttpRequest())?"register_content":"register";
+		return $this->container->get('templating')->renderResponse('ClamzCheminDuSonUserBundle:Registration:'.$template.'.html.'.$this->getEngine(), array(
+				'form' => $form->createView()
 		));
 	}
 

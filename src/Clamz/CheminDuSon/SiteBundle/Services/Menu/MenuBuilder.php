@@ -25,6 +25,7 @@ class MenuBuilder
         $menu->addChild('Accueil', array('route' => '_welcome'));
         $menu->addChild('Connexion', array('route' => 'fos_user_security_login'));
         $menu->addChild('Inscription', array('route' => 'fos_user_registration_register'));
+        $menu->addChild('Groupes', array('route' => 'band'));
         // ... add more children
 
         return $menu;
