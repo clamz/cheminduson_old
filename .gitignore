@@ -13,3 +13,4 @@ UPGRADE.md
 *.php~
 install/
 web/uploads
+web/media
