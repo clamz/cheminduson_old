@@ -26,7 +26,6 @@ class BandController extends Controller
      * Lists all Band entities.
      *
      * @Route("/", name="band")
-     * @Template()
      */
     public function accueilAction()
     {
@@ -37,6 +36,23 @@ class BandController extends Controller
         return $this->render('CdsBandBundle:Band:'.$template.'.html.twig', array(
             'bands' => $bands
         ));
+    }
+    
+    /**
+     * Lists all Band entities.
+     *
+     * @Route("/new_bands", name="new_bands")
+     * @Template()
+     */
+    public function listNewBandsAction()
+    {
+    	$em = $this->getDoctrine()->getManager();
+    
+    	$bands = $em->getRepository('CdsBandBundle:Band')->findAll();
+    	$template = ($this->container->get('request')->isXmlHttpRequest())?"accueil_content":"accueil";
+    	return $this->render('CdsBandBundle:Band:listBands.html.twig', array(
+    			'bands' => $bands
+    	));
     }
     
     /**

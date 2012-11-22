@@ -1,5 +1,5 @@
-{% extends "CdsBandBundle::layout.html.twig" %}
-{% block body %}
+
+
 <h1>Band list</h1>
 <div id="band-list">
 	{% for band in bands %}
@@ -10,7 +10,7 @@
 	            <td><a href="{{ path('band_show', { 'id': band.id }) }}">{{ band.id }}</a></td>
 	            <td>{{ band.name }}</td>
 	            <td>{{ band.nationality }}</td>
-	            <td><img src="{{ dump(band.image) }}" /></td>
+	            <td><img src="{{ asset(band.webPath) }}" /></td>
 	            <td>{{ band.presentation }}</td>
 	            <td>
 	                <ul>
@@ -33,4 +33,3 @@
         </span>
     </li>
 </ul>
-{% endblock %}
