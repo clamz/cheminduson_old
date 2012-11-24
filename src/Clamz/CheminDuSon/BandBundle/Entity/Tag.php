@@ -2,6 +2,8 @@
 
 namespace Clamz\CheminDuSon\BandBundle\Entity;
 
+use Clamz\CheminDuSon\SiteBundle\Entity\BaseEntity;
+
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -10,7 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="cds_band_tag")
  * @ORM\Entity(repositoryClass="Clamz\CheminDuSon\BandBundle\Entity\TagRepository")
  */
-class Tag
+class Tag extends BaseEntity
 {
     /**
      * @var integer $id

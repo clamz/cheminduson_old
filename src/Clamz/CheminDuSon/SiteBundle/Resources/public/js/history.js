@@ -26,7 +26,10 @@ function load_content(title,url,skipHistory) {
                         }
                 }
                 //On charge le contenu
-                $('#content').html(data);
+                $('#content').fadeOut(500, function() {
+                    $(this).html(data);
+                });
+                $('#content').fadeIn(500);
         });
        
        

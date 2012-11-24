@@ -58,7 +58,10 @@ $(function(){
                         }
                 }
                 //On charge le contenu
-                element.html(data);
+                element.fadeOut(500,function(){
+                	$(this).html(data);
+                });
+                element.fadeIn(1500);
         });
        
        

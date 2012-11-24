@@ -2,6 +2,8 @@
 
 namespace Clamz\CheminDuSon\BandBundle\Entity;
 
+use Clamz\CheminDuSon\SiteBundle\Entity\BaseEntity;
+
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -10,7 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="cds_band_member_rel")
  * @ORM\Entity
  */
-class BandMember
+class BandMember extends BaseEntity
 {
   
     /**

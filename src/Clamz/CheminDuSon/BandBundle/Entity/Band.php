@@ -2,6 +2,8 @@
 
 namespace Clamz\CheminDuSon\BandBundle\Entity;
 
+use Clamz\CheminDuSon\SiteBundle\Entity\BaseEntity;
+
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
@@ -15,7 +17,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\HasLifecycleCallbacks
  * @ORM\Entity(repositoryClass="Clamz\CheminDuSon\BandBundle\Entity\BandRepository")
  */
-class Band
+class Band extends BaseEntity
 {
     /**
      * @var integer $id

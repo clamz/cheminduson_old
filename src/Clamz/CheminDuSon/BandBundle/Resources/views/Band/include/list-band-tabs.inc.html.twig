@@ -1,8 +1,8 @@
 {% trans_default_domain "bandbundle" %}
 <div id="tabs">
 	<ul>
-		<li><a href="{{ path('new_bands') }}" title="{{ "band.list.new.title" | trans }}">{{ "band.list.new.value" | trans }}</a></li>
-		<li class="active"><a href="{{ path('new_bands') }}" title="{{ "band.list.new.title" | trans }}">test</a></li>
+		<li class="{{ (select=='new')?"active":"" }}"><a href="{{ path('new_bands') }}" title="{{ "band.list.new.title" | trans }}">{{ "band.list.new.value" | trans }}</a></li>
+		<li class="{{ (select=='recommended')?"active":"" }}"><a href="{{ path('recommended_bands') }}" title="{{ "band.list.new.title" | trans }}">test</a></li>
 	</ul>
 </div>
 

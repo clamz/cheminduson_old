@@ -34,7 +34,8 @@ class BandController extends Controller
         $bands = $em->getRepository('CdsBandBundle:Band')->findAll();
         $template = ($this->container->get('request')->isXmlHttpRequest())?"accueil_content":"accueil";
         return $this->render('CdsBandBundle:Band:'.$template.'.html.twig', array(
-            'bands' => $bands
+            'bands' => $bands,
+    			'select' => 'new'
         ));
     }
     
@@ -49,9 +50,28 @@ class BandController extends Controller
     	$em = $this->getDoctrine()->getManager();
     
     	$bands = $em->getRepository('CdsBandBundle:Band')->findAll();
-    	$template = ($this->container->get('request')->isXmlHttpRequest())?"accueil_content":"accueil";
-    	return $this->render('CdsBandBundle:Band:listBands.html.twig', array(
-    			'bands' => $bands
+    	$template = ($this->container->get('request')->isXmlHttpRequest())?"/List:new_bands":":accueil";
+    	return $this->render('CdsBandBundle:Band'.$template.'.html.twig', array(
+    			'bands' => $bands,
+    			'select' => 'new'
+    	));
+    }
+    
+    /**
+     * Lists all Band entities.
+     *
+     * @Route("/recommended_bands", name="recommended_bands")
+     * @Template()
+     */
+    public function listRecommendedBandsAction()
+    {
+    	$em = $this->getDoctrine()->getManager();
+    
+    	$bands = $em->getRepository('CdsBandBundle:Band')->findAll();
+    	$template = ($this->container->get('request')->isXmlHttpRequest())?"/List:recommended_bands":":accueil";
+    	return $this->render('CdsBandBundle:Band'.$template.'.html.twig', array(
+    			'bands' => $bands,
+    			'select' => 'recommended'
     	));
     }
     
