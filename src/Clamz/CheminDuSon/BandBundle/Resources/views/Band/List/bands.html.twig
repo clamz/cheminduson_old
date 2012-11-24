@@ -1,0 +1,18 @@
+<div id="band-list">
+	{% for band in bands %}
+		<div class="inline-table list-cell">
+			<div>
+				<a href="{{ path('band_show', { 'id': band.id }) }}" class="nav"><img src="{{ asset(band.webPath) | apply_filter('band_thumb') }}" /></a>
+			</div>
+			<span class="list-label"><a href="{{ path('band_show', { 'id': band.id }) }}" class="nav">{{ band.name }}</a></span>
+		</div>
+	{% endfor %}
+</div>
+ 
+<ul>
+    <li>
+        <span  id="new-band">
+            Create a new entry
+        </span>
+    </li>
+</ul>

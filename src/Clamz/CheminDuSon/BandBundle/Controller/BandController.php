@@ -50,7 +50,7 @@ class BandController extends Controller
     	$em = $this->getDoctrine()->getManager();
     
     	$bands = $em->getRepository('CdsBandBundle:Band')->findAll();
-    	$template = ($this->container->get('request')->isXmlHttpRequest())?"/List:new_bands":":accueil";
+    	$template = ($this->container->get('request')->isXmlHttpRequest())?"/List:bands":":accueil";
     	return $this->render('CdsBandBundle:Band'.$template.'.html.twig', array(
     			'bands' => $bands,
     			'select' => 'new'

@@ -33,7 +33,6 @@ div.clear-both{
 div#content {
 	background: url("../images/fond.jpg") repeat-x scroll 0 0 transparent;
     height: 100%;
-    padding: 5px;
     position: absolute;
     vertical-align: baseline;
     width: 100%;
@@ -59,3 +58,38 @@ div#content {
 .hidden{
 	display: none;
 }
+
+.cell{
+	display: table-cell;
+}
+
+.inline-table{
+    display: inline-table;
+}
+
+#band-accueil{
+	height:100%;
+}
+
+div.list-cell{
+	padding: 0 15px 0 0;
+}
+
+    div.list-cell span.list-label{
+		background: url("../images/list-label.png");
+	    display: block;
+	    font-size: 20px;
+	    padding: 5px;
+	    position: relative;
+	    text-align: center;
+	    top: -37px;
+	}
+        
+        div.list-cell img{
+            box-shadow: 5px 5px 2px #555555;
+        }
+        
+        div.list-cell span.list-label a{
+            color: white;
+			text-decoration: none;
+		}

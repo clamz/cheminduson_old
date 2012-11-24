@@ -1,0 +1,5 @@
+avalanche_imagine:
+    filters:
+        band_thumb:
+            type:    thumbnail
+            options: { size: [150, 180], mode: outbound }

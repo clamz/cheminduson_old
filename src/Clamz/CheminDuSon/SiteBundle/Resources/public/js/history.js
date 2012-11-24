@@ -1,11 +1,11 @@
 $(document).ready(function(){
-        $('nav a').click(function() {
-                //On met l'élément courant dans une variable, pour améliorer les performances
-                var $t = $(this);
-                //On appelle la fonction qui fera la requete en ajax, et gérera la pile de l'historique
-                load_content($t.attr('href'),$t.attr('href'));
-                //On ne suit pas le lien
-                return false;
+        waitForKeyElements ("nav a,a.nav",function(node){
+        	node.click(function() {
+        		var $t = $(this);
+        		load_content($t.attr('href'),$t.attr('href'));
+        		//On ne suit pas le lien
+        		return false;
+        	});
         });
 });
 function load_content(title,url,skipHistory) {

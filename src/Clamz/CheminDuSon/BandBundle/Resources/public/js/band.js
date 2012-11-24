@@ -22,6 +22,7 @@ $(function(){
 			function(node){
 				node.tabs({ 
 					 active:$('#'+node.attr('id')+' li.active').index(),
+					 heightStyle: "fill",
 					 beforeLoad: function( event, ui ) {
 			            ui.jqXHR.error(function() {
 			                ui.panel.html(
@@ -61,7 +62,7 @@ $(function(){
                 element.fadeOut(500,function(){
                 	$(this).html(data);
                 });
-                element.fadeIn(1500);
+                element.fadeIn(500);
         });
        
        
