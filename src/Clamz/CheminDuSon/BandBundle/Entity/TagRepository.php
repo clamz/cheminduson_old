@@ -12,4 +12,9 @@ use Doctrine\ORM\EntityRepository;
  */
 class TagRepository extends EntityRepository
 {
+	public function getTags(){
+		$query = $this->createQueryBuilder('t')
+			->setMaxResults(10)->getQuery();
+		return $query->getResult();
+	}
 }

@@ -2,7 +2,7 @@
 
 namespace Clamz\CheminDuSon\BandBundle\Controller;
 
-use Clamz\CheminDuSon\BandBundle\Entity\Tag;
+
 
 use Monolog\Logger;
 
@@ -11,8 +11,10 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use JMS\SecurityExtraBundle\Annotation\Secure;
 use Clamz\CheminDuSon\BandBundle\Entity\Band;
+use Clamz\CheminDuSon\BandBundle\Entity\Tag;
 use Clamz\CheminDuSon\BandBundle\Form\BandType;
 
 /**
@@ -31,10 +33,14 @@ class BandController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $bands = $em->getRepository('CdsBandBundle:Band')->findAll();
         $template = ($this->container->get('request')->isXmlHttpRequest())?"accueil_content":"accueil";
+        
+        $bands = $em->getRepository('CdsBandBundle:Band')->findNewBands();
+        $tags = $em->getRepository('CdsBandBundle:Tag')->getTags();
+       
         return $this->render('CdsBandBundle:Band:'.$template.'.html.twig', array(
             'bands' => $bands,
+        		'tags' => $tags,
     			'select' => 'new'
         ));
     }
@@ -47,12 +53,15 @@ class BandController extends Controller
      */
     public function listNewBandsAction()
     {
-    	$em = $this->getDoctrine()->getManager();
-    
-    	$bands = $em->getRepository('CdsBandBundle:Band')->findAll();
+    	$em = $this->getDoctrine()->getManager();   
+    	
+    	$bands = $em->getRepository('CdsBandBundle:Band')->findNewBands();
+    	$tags = $em->getRepository('CdsBandBundle:Tag')->getTags();
+    	
     	$template = ($this->container->get('request')->isXmlHttpRequest())?"/List:bands":":accueil";
     	return $this->render('CdsBandBundle:Band'.$template.'.html.twig', array(
     			'bands' => $bands,
+    			'tags' => $tags,
     			'select' => 'new'
     	));
     }
@@ -68,11 +77,23 @@ class BandController extends Controller
     	$em = $this->getDoctrine()->getManager();
     
     	$bands = $em->getRepository('CdsBandBundle:Band')->findAll();
+    	$tags = $em->getRepository('CdsBandBundle:Tag')->getTags();
+    	
     	$template = ($this->container->get('request')->isXmlHttpRequest())?"/List:recommended_bands":":accueil";
     	return $this->render('CdsBandBundle:Band'.$template.'.html.twig', array(
     			'bands' => $bands,
+    			'tags' => $tags,
     			'select' => 'recommended'
     	));
+    }
+    
+    /**
+     * @Route('/tag/{id}', requirements={"id" = "\d+"})
+     * @ParamConverter("post", class="CdsBandBundle:Tag")
+     * @param Tag $tag
+     */
+    public function bandsByTagAction(Tag $tag){
+    	$tag->	
     }
     
     /**

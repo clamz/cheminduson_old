@@ -27,6 +27,10 @@ header a{
 		vertical-align: middle;
 	}
 	
+li{
+	list-style-type: none;
+}
+	
 div.clear-both{
 	clear:both;
 }

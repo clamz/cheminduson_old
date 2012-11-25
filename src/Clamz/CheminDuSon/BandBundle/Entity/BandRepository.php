@@ -30,4 +30,12 @@ class BandRepository extends EntityRepository
 		$em->persist($band);
 		$em->flush();
 	}
+	
+	function findNewBands(){
+		
+		$query = $this->createQueryBuilder('b')
+			->orderBy('b.created','DESC')
+			->setMaxResults("30")->getQuery();
+		return $query->getResult();
+	}
 }
