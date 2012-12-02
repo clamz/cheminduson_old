@@ -22,7 +22,8 @@
         "knplabs/knp-menu-bundle":"dev-master",
         "friendsofsymfony/jsrouting-bundle":"dev-master",
         "gedmo/doctrine-extensions": "dev-master",
-        "avalanche123/imagine-bundle": "v2.1"
+        "avalanche123/imagine-bundle": "v2.1",
+        "Trsteel/ckeditor-bundle": "*"
         
     },
     "scripts": {

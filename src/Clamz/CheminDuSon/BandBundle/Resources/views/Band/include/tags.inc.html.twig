@@ -1,8 +1,13 @@
-<div id="band-tags-container">
-	<h4 id="band-tags-title">Tags</h4>
-	<ul id="band-tags-list">
-	{% for tag in tags %}
-		<li>{{ tag.name }}</li>
-	{% endfor %}
-	</ul>
+<div class="action-container">
+	<div id="band-tags-container">
+		<h4 id="band-tags-title">Tags</h4>
+		<ul id="band-tags-list">
+		{% for tag in tags %}
+			<li><a class="nav" href="{{ path('tag_bands',{'id' : tag.id }) }}" >{{ tag.name }}</a></li>
+		{% endfor %}
+		</ul>
+	</div>
+	<div class="button-container">
+		<span class="btn"><a href="{{ path('band_new') }}" class="nav">{{ "ajout.group" | trans }}</a></span>
+	</div>
 </div>

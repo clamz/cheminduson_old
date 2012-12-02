@@ -36,11 +36,19 @@
         	{% endblock %}
         </div>
         {% block javascripts %}
+        	<script type="text/javascript">
+        	 	{% autoescape true js %}
+		        	var CKEDITOR_BASEPATH = '{{ asset("bundles/clamzcdssite/js/ckeditor/") }}';
+		    	{% endautoescape %}
+		    </script>
         	{% javascripts 'bundles/clamzcdssite/js/jquery-1.8.2.min.js'
+        					 'bundles/clamzcdssite/js/waitForKeyElements.js'
+        					 'bundles/clamzcdssite/js/underscore-min.js'
+        					 'bundles/clamzcdssite/js/ckeditor/ckeditor.js'
         					'bundles/clamzcdssite/js/*'
         					'bundles/cdsband/js/*' filter='?yui_js' %}
 			    <script type="text/javascript" src="{{ asset_url }}"></script>
-			{% endjavascripts %}
+			{% endjavascripts %}	
 			<script type="text/javascript" src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
 			<script type="text/javascript" src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
         {% endblock %}

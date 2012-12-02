@@ -1,9 +1,5 @@
 <?php
-
 namespace Clamz\CheminDuSon\BandBundle\Controller;
-
-
-
 use Monolog\Logger;
 
 use Symfony\Component\HttpFoundation\Request;
@@ -88,12 +84,27 @@ class BandController extends Controller
     }
     
     /**
-     * @Route('/tag/{id}', requirements={"id" = "\d+"})
+     * @Route("/tag/{id}", name="tag_bands", requirements={"id" = "\d+"},options={"expose"=true})
      * @ParamConverter("post", class="CdsBandBundle:Tag")
      * @param Tag $tag
      */
     public function bandsByTagAction(Tag $tag){
-    	$tag->	
+    	$em = $this->getDoctrine()->getManager();
+    	
+    	$tags = $em->getRepository('CdsBandBundle:Tag')->getTags();
+    	
+    	$lstTagBand = $em->getRepository('CdsBandBundle:BandTag')->findByTag($tag->getId());  
+    	
+    	$bands = array();
+    	foreach ($lstTagBand as $tagBand){
+    		array_push($bands,$tagBand->getBand());
+    	}
+    	
+    	$template = ($this->container->get('request')->isXmlHttpRequest())?"tag_bands_content":"tag_bands";
+    	return $this->render('CdsBandBundle:Band:'.$template.'.html.twig',array(
+    				'bands' => $bands,
+    				'tags' => $tags
+    			));
     }
     
     /**
@@ -101,7 +112,6 @@ class BandController extends Controller
      *
      * @Route("/new", name="band_new")
      * @Secure(roles="ROLE_USER")
-     * @Template()
      */
     public function newBandAction()
     {
@@ -113,7 +123,10 @@ class BandController extends Controller
     	$band->addTag($tag);
     	$band->addTag($tag2);
     	$form=$this->getBandForm($band)->createView();
-    	return array('form' => $form);
+    	$template = ($this->container->get('request')->isXmlHttpRequest())?"/include:form-new-band.inc":":new_band";
+    	return $this->render('CdsBandBundle:Band'.$template.'.html.twig',array(
+    				'form' => $form
+    			));
     }
     
     /**

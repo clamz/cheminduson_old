@@ -1,9 +1,9 @@
 $(function(){
 	waitForKeyElements ('#band-tags-container',function(node){
 		node.mouseenter(function(e) {
-			$('#band-tags-list').show('slow');
+			$('#band-tags-list').show('fast');
 		}).mouseleave(function(e) {
-			$('#band-tags-list').hide('slow');
+			$('#band-tags-list').hide('fast');
 		});
 	});
 });

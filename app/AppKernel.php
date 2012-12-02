@@ -26,6 +26,7 @@ class AppKernel extends Kernel
             new Clamz\CheminDuSon\BandBundle\CdsBandBundle(),
         	new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
         	new Avalanche\Bundle\ImagineBundle\AvalancheImagineBundle(),
+        	new Trsteel\CkeditorBundle\TrsteelCkeditorBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

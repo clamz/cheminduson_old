@@ -14,7 +14,10 @@ class BandType extends AbstractType
             ->add('name',null,array("label"=>"form.band.name.label", 'translation_domain' => 'bandbundle-form'))
             ->add('nationality','text',array("label"=>"form.band.nationality.label", 'translation_domain' => 'bandbundle-form'))
             ->add('image')
-            ->add('presentation',null,array("label"=>"form.band.presentation.label", 'translation_domain' => 'bandbundle-form'))
+            ->add('presentation','textarea',
+            	array("label"=>"form.band.presentation.label",
+            			"attr" => array('class' => 'ckeditor'), 
+            			'translation_domain' => 'bandbundle-form'))
             ->add('tags','collection',array('type'=>new TagType(),"allow_add" =>true,'by_reference'=>false))
         ;
     }

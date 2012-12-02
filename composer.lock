@@ -1,6 +1,51 @@
 {
-    "hash": "64a58b5c45f7b247d6c62519d57d4edf",
+    "hash": "df4c5c117a3e5fa7339b3b3798bbe95c",
     "packages": [
+        {
+            "name": "Trsteel/ckeditor-bundle",
+            "version": "dev-master",
+            "target-dir": "Trsteel/CkeditorBundle",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/trsteel88/TrsteelCkeditorBundle",
+                "reference": "0d01093693b6ca6a78801f14f74aa529709a5c38"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/trsteel88/TrsteelCkeditorBundle/archive/0d01093693b6ca6a78801f14f74aa529709a5c38.zip",
+                "reference": "0d01093693b6ca6a78801f14f74aa529709a5c38",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0",
+                "twig/twig": ">=1.1,<2.0-dev",
+                "symfony/form": "2.1.*",
+                "symfony/framework-bundle": "2.*,<2.3"
+            },
+            "time": "1351850314",
+            "type": "symfony-bundle",
+            "installation-source": "source",
+            "autoload": {
+                "psr-0": {
+                    "Trsteel\\CkeditorBundle": ""
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Trent Steel",
+                    "email": "trsteel88@gmail.com"
+                }
+            ],
+            "description": "Symfony2 bundle for easy integration of the CKEditor WYSIWYG",
+            "keywords": [
+                "wysiwyg",
+                "editor",
+                "CKEditor"
+            ]
+        },
         {
             "name": "avalanche123/imagine-bundle",
             "version": "v2.1",
@@ -1551,22 +1596,22 @@
             "source": {
                 "type": "git",
                 "url": "git://github.com/fabpot/Twig.git",
-                "reference": "a009821dd31fa783269602507542cea978c9714a"
+                "reference": "6d40dbdf8b3036014e3e279f82af0c1d1a7faacb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/fabpot/Twig/zipball/a009821dd31fa783269602507542cea978c9714a",
-                "reference": "a009821dd31fa783269602507542cea978c9714a",
+                "url": "https://github.com/fabpot/Twig/archive/6d40dbdf8b3036014e3e279f82af0c1d1a7faacb.zip",
+                "reference": "6d40dbdf8b3036014e3e279f82af0c1d1a7faacb",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.2.4"
             },
-            "time": "1351927661",
+            "time": "1354345248",
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.11-dev"
+                    "dev-master": "1.12-dev"
                 }
             },
             "installation-source": "source",

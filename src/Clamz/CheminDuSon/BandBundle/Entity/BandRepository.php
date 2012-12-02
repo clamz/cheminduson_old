@@ -15,20 +15,29 @@ class BandRepository extends EntityRepository
 	function createBand($band, $tags){
 		var_dump($band);
 		$em = $this->getEntityManager();
+		$tagRepository = $em->getRepository('CdsBandBundle:Tag');
+		$em->persist($band);
+		$em->flush($band);
 		foreach ($tags as $tag){
 			if($tag!==""){
-				$tagEntity = $em->getRepository('CdsBandBundle:Tag')->findOneByName($tag);
+				$tagEntity = $tagRepository->findOneByName($tag);
 				if($tagEntity===null){
 					$tagEntity = new Tag();
+					$tagEntity->setName($tag);
+					$em->persist($tagEntity);
+					$em->flush($tagEntity);
 				}
-				$tagEntity->setName($tag);
-				$band->addTag($tagEntity);
+				$bandTagEntity = new BandTag();
+				
+				$bandTagEntity->setTag($tagEntity);
+				$bandTagEntity->setBand($band);
+				$em->persist($bandTagEntity);
+				$em->flush($bandTagEntity);
 			}
-		
+			
 		}
 		
-		$em->persist($band);
-		$em->flush();
+		
 	}
 	
 	function findNewBands(){

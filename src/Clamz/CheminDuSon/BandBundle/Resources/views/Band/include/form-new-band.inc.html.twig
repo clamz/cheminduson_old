@@ -17,13 +17,15 @@
     	{{ form_errors(form.image) }}
     </div>
     <div>
+    	
+	   
 		{{ form_label(form.presentation) }}
     	{{ form_widget(form.presentation) }}
     	{{ form_errors(form.presentation) }}
     </div>
     <div data-prototype="{{ form_widget(form.tags.vars.prototype)|e }}">
     	{{ form_label(form.tags) }}
-	    	<input id="band_tags" type="text" name="tags[]" />
+	    	<input id="band_tags" type="text" class="tbl-input-test" name="tags[]" />
 	    	{% set values = "" %}
     	{% for tag in form.tags %}
 	    	{%  if values !="" %}

@@ -68,12 +68,7 @@ class Band extends BaseEntity
      */
     private $category;
 
-    /**
-     * var int $tags
-     * @ORM\ManyToMany(targetEntity="Tag", cascade={"persist"})
-     * @ORM\JoinTable(name="cds_band_tag_rel")
-     */
-    private $tags;
+
     
     
     
@@ -230,28 +225,6 @@ class Band extends BaseEntity
         $this->tags->removeElement($tags);
     }
 
-    /**
-     * Get tags
-     *
-     * @return Doctrine\Common\Collections\Collection 
-     */
-    public function getTags()
-    {
-        return $this->tags;
-    }
-    
-    /**
-     * Get tags
-     *
-     * @return Doctrine\Common\Collections\Collection
-     */
-    public function setTags(ArrayCollection $tags)
-    {
-    	foreach($tags as $tag){
-    		$tag->addBand($this);
-    	}
-    	$this->tags = $tags;
-    }
     
     /**
      * @ORM\PrePersist()
@@ -259,7 +232,7 @@ class Band extends BaseEntity
      */
     public function preUpload()
     {
-    	if (null !== $this->image) {
+    	if (isset($this->image) && null !== $this->image) {
     		// do whatever you want to generate a unique name
     		$this->setPath($this->image->getClientOriginalName());
     	}

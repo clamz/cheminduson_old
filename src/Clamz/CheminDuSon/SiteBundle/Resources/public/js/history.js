@@ -1,5 +1,5 @@
 $(document).ready(function(){
-        waitForKeyElements ("nav a,a.nav",function(node){
+        waitForKeyElements ("nav a, a.nav",function(node){
         	node.click(function() {
         		var $t = $(this);
         		load_content($t.attr('href'),$t.attr('href'));
@@ -9,7 +9,10 @@ $(document).ready(function(){
         });
 });
 function load_content(title,url,skipHistory) {
-		$('#content').empty().html('<img src="/images/ajax-loader.gif" style="display:block;margin:auto;" />');
+		$('#content').fadeOut(function(){
+			$(this).html('<img src="/images/ajax-loader.gif" style="display:block;margin:auto;" />');
+		});
+		
         $.get(url,function (data) {
                 //On met à jour le itre de la page
                 document.title = title;

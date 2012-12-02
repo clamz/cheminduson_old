@@ -1,0 +1,6 @@
+{% include 'CdsBandBundle:Band/include:tags.inc.html.twig' %}
+{% trans_default_domain "bandbundle-translate" %}
+<h2 class="page-title">{{ "tag.group.title" | trans }}</h2>
+<div class="content">
+	{% include 'CdsBandBundle:Band/List:bands.html.twig' %}
+</div>
