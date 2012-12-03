@@ -14,3 +14,4 @@ UPGRADE.md
 install/
 web/uploads
 web/media
+app/config/parameters.yml
