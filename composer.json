@@ -23,9 +23,25 @@
         "friendsofsymfony/jsrouting-bundle":"dev-master",
         "gedmo/doctrine-extensions": "dev-master",
         "avalanche123/imagine-bundle": "v2.1",
-        "Trsteel/ckeditor-bundle": "*"
+        "Trsteel/ckeditor-bundle": "*",
+        "leafo/lessphp": "dev-master",
+        "twitter/bootstrap": "master"
         
     },
+    "repositories": [
+        {
+            "type": "package",
+            "package": {
+                "name": "twitter/bootstrap",
+                "version": "master",
+                "source": {
+                    "type": "git",
+                    "url": "https://github.com/twitter/bootstrap",
+                    "reference": "master"
+                }
+            }
+        }
+    ],
     "scripts": {
         "post-install-cmd": [
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
