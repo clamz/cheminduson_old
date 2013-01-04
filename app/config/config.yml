@@ -3,6 +3,7 @@ imports:
     - { resource: security.yml }
     - { resource: doctrine_extensions.yml }
     - { resource: imagine_extension.yml }
+    - { resource: google_api_parameters.yml }
     - { resource: @ClamzCdsSiteBundle/Resources/config/formsServices.yml }
 
 framework:

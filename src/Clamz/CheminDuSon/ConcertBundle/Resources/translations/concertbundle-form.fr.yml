@@ -1,0 +1,10 @@
+form:
+  concert:
+    name:
+      label: Nom
+    date:
+      label: Date
+    description:
+      label: Description
+    price:
+      label: Prix

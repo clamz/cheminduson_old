@@ -1,3 +1,13 @@
+clamz_location:
+    resource: "@ClamzLocationBundle/Controller/"
+    type:     annotation
+    prefix:   /
+    
+cds_concert:
+    resource: "@CdsConcertBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
 cds_band:
     resource: "@CdsBandBundle/Controller/"
     type:     annotation
