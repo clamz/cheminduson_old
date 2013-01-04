@@ -4,7 +4,11 @@
         <meta charset="UTF-8" />
         <title>Chemin Du Son - {% block title %}{% endblock %}</title>
         {% block stylesheets %}
-        	{% stylesheets 'bundles/clamzcdssite/css/*'
+        	{% stylesheets '%kernel.root_dir%/../vendor/twitter/bootstrap/less/bootstrap.less'        					
+        					'bundles/clamzcdssite/less/site.less'
+        					'bundles/clamzcdssite/less/menu.less'
+        					'bundles/clamzcdssite/less/form.less'
+        					'bundles/clamzcdssite/less/textboxList.less'
         					'bundles/clamzchemindusonuser/css/*' 
         					'bundles/cdsband/css/*'
         					filter="cssrewrite" output="css/main.css" %}
